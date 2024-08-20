@@ -39,12 +39,8 @@ func main(){
 
 		switch choice {
 		case 1:
-			generatedNumber, err := NHS.Generate() // NHS generation process entry-point
-			if err != nil {
-				fmt.Println(err)
-			} else {
-				fmt.Println(generatedNumber)
-			}
+			generatedNumber := NHS.Generate() // NHS generation process entry-point
+			fmt.Println(generatedNumber)
 			
 		case 2:
 			fmt.Print("Enter the 10-digit number to validate: ")

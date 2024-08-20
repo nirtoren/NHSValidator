@@ -15,7 +15,7 @@ func NewNHSManager() (*NHS, error){
 	return &NHS{}, nil
 }
 
-func (n *NHS) Generate() (string, error) {
+func (n *NHS) Generate() (string) {
 	validationChain, err := validator.NewValidationChain()
 	if err != nil {
 		log.Fatalf("Could not initialize validation chain: %v", err)
@@ -61,7 +61,7 @@ func (n *NHS) Generate() (string, error) {
 		}
 	}
 	
-	return NHSNumber, err
+	return NHSNumber
 }
 
 func (n *NHS) Validate(nhs string) (bool, error) {

@@ -11,13 +11,11 @@ func TestGenerate(t *testing.T) {
 		t.FailNow()
 	}
 
-	for i := 0; i < 5; i++ { // Test multiple times to ensure reliability
-		generatedNumber, _ := NHS.Generate()
-		if err != nil {
-			t.Fatalf("Generation of NHS number failed")
-		}
+	for i := 0; i < 10; i++ { // Test multiple times to ensure reliability
+		generatedNumber := NHS.Generate()
 
 		// Validate the generated number
+		// Validation is a part of the Generate() function itself but here for testing purposes.
 		isValid, _ := NHS.Validate(generatedNumber)
 		if !isValid{
 			t.Errorf("Generated number %s is invalid", generatedNumber)
