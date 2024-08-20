@@ -34,19 +34,16 @@ func (n *NHS) Generate() (string, error) {
 			NHSNumber += strconv.Itoa(digit)
 		}
 
-		// Stage 1 + Stage 2
 		weightedSum, err := validationChain.ProcessMap(NHSNumber)
 		if err != nil {
 			continue
 		}
 
-		// Stage 3
 		remainder, err := validationChain.GetRemainder(weightedSum)
 		if err != nil {
 			continue
 		}
 
-		// Stage 4
 		checkDigit = 11 - remainder
 
 		if checkDigit == 11 {

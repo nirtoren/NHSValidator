@@ -71,7 +71,6 @@ func (vc *ValidationChain) Validate(nhs string)(bool, error){
 
 	checkDigit = 11 - remainder
 
-	// fmt.Printf("CheckDigit after substraction is %d\n", checkDigit)
 	if checkDigit == 11 {
 		checkDigit = 0
 	} else if checkDigit == 10 {

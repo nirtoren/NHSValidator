@@ -19,9 +19,6 @@ func TestGenerate(t *testing.T) {
 
 		// Validate the generated number
 		isValid, _ := NHS.Validate(generatedNumber)
-		// if err != nil {
-		// 	t.FailNow()
-		// }
 		if !isValid{
 			t.Errorf("Generated number %s is invalid", generatedNumber)
 		}
