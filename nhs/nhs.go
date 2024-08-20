@@ -18,29 +18,35 @@ func NewNHSManager() (*NHS, error){
 func (n *NHS) Generate() (string, error) {
 	validationChain, err := validator.NewValidationChain()
 	if err != nil {
-		log.Fatalf("Validation chain could not been established %v", err)
+		log.Fatalf("Could not initialize validation chain: %v", err)
 	}
+
 	var NHSNumber string
+	
 	for {
 		var checkDigit int
 
 		NHSNumber = ""
+
+		// Randomly write 9/10 digits
 		for i := 0; i < 9; i++ {
-			digit := rand.Intn(10) // Random digit between 0 and 9
+			digit := rand.Intn(10)
 			NHSNumber += strconv.Itoa(digit)
 		}
 
+		// Stage 1 + Stage 2
 		weightedSum, err := validationChain.ProcessMap(NHSNumber)
 		if err != nil {
 			continue
-			// return "", err
 		}
 
+		// Stage 3
 		remainder, err := validationChain.GetRemainder(weightedSum)
 		if err != nil {
 			continue
 		}
 
+		// Stage 4
 		checkDigit = 11 - remainder
 
 		if checkDigit == 11 {
@@ -52,8 +58,8 @@ func (n *NHS) Generate() (string, error) {
 		NHSNumber += strconv.Itoa(checkDigit)
 
 		// Validation of generated number
-		isValid, _ := validationChain.Validate(NHSNumber)
-		if isValid {
+		isValid, err := validationChain.Validate(NHSNumber)
+		if isValid || err != nil {
 			break
 		}
 	}

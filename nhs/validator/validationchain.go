@@ -41,15 +41,14 @@ func (vc *ValidationChain) inputValidattion(nhs string) error{
 }
 
 func (vc *ValidationChain) Validate(nhs string)(bool, error){
-	// Input validation
 	var err error
 
+	// Input validation
 	err = vc.inputValidattion(nhs)
 	if err != nil {
 		return false, err
 	}
 
-	// var isNHSValid bool
 	var validityDigit int
 	var checkDigit int
 
