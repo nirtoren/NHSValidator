@@ -13,8 +13,12 @@ Generate() - Written in such way that it should always succeed, returns a valid 
 
 Validate(string) - Takes a string (NHS number) and validates it using the official NHS specification and restrictions of the NHS NUMBER.
 
+## Usage/Examples
 
-
+```go
+    go run .
+```
+A prompt will be displayed for either generating a new valid NHS number or validating existing one.
 
 ## Running Tests
 
